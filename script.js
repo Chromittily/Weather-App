@@ -24,7 +24,7 @@ let weather = {
         document.querySelector(".humidity").innerText = "Humidity: " + humidity + "%";
         document.querySelector(".wind").innerText = "Wind speed: " + speed + "km/h";
         document.querySelector(".weather").classList.remove("loading");
-        document.body.style.backgroundImage = "url('https://api.unsplash.com/photos/random/?query=" + name + "&client_id=znH73UCnuEIr20_sM44KszkeLkgl9Zv2w8xGu70Ulkw')";
+        //document.body.style.backgroundImage = "url('https://api.unsplash.com/photos/random/?query=" + name + "&client_id=znH73UCnuEIr20_sM44KszkeLkgl9Zv2w8xGu70Ulkw')";
         //document.body.style.backgroundImage = "url('https://source.unsplash.com/1600x900?" + name + "')";
        // document.body.style.backgroundImage = "url('https://images.unsplash.com/photo-1659200936483-65f3fd694065?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80')";
     },
@@ -48,14 +48,18 @@ document
         }
 });
 
-weather.fetchWeather("Birmingham");
+
 
 
 
 
 let clientID = "znH73UCnuEIr20_sM44KszkeLkgl9Zv2w8xGu70Ulkw";
 //let endpoint = `https://api.unsplash.com/search/photos?page=1&query=office/?client_id=${clientID}`;
-let endpoint = `https://api.unsplash.com/photos/random/?query=office&client_id=${clientID}`;
+let endpoint = `https://api.unsplash.com/photos/random/?query=Birmingham&client_id=${clientID}`;
+
+let imageElement = document.querySelector("#unsplashImage");
+let imageLink = document.querySelector("#imageLink");
+let creator = document.querySelector("#creator");
 
 fetch(endpoint)
     .then(function (response){
@@ -64,4 +68,8 @@ fetch(endpoint)
     })
     .then(function (jsonData){
         console.log(jsonData);
-    })
+        document.body.style.backgroundImage = `url('${jsonData.urls.regular}')`;
+        //imageElement.src = jsonData.urls.regular;
+    });
+
+    weather.fetchWeather("Birmingham");
