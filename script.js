@@ -11,6 +11,7 @@ let weather = {
             .then((data) => this.displayWeather(data)); //Changed from console.log() >> displayWeather()
     },
     displayWeather: function (data) {
+        console.log(data);
         const { name } = data;
         const { icon, description } = data.weather[0]; //Data is originally contained in an array, so "[0]" is needed.
         const { temp, humidity } = data.main;
@@ -92,14 +93,15 @@ let websiteBackground = {
             + this.unsplashApiKey
         )
             .then((response) => response.json())
-            .then((jsonData) => this.fetchBackground(jsonData));
+            .then((jsonData) => this.setBackground(jsonData));
 
     },
 
     setBackground: function (jsonData) {
         console.log(jsonData);
-        const { regularURL } = jsonData.urls.regular;
-        document.body.style.backgroundImage = url(regularURL);
+        const { regular } = jsonData.urls;
+        console.log("url(\"" + regular + "\")");
+        document.body.style.backgroundImage = "url(\"" + regular + "\")";
     },
 
     photoSearch: function () {
