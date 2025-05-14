@@ -177,7 +177,7 @@ let websiteBackground = {
             + stateCode
             + "%2C"
             + countryCode
-            + "&client_id="
+            + "&orientation=landscape&client_id="
             + this.unsplashApiKey
         )
             .then((response) => response.json())
@@ -187,9 +187,9 @@ let websiteBackground = {
 
     setBackground: function (jsonData) {
         console.log(jsonData);
-        const { regular } = jsonData.urls;
-        console.log("url(\"" + regular + "\")");
-        document.body.style.backgroundImage = "url(\"" + regular + "\")";
+        const { raw } = jsonData.urls;
+        console.log("url(\"" + raw + "\")");
+        document.body.style.backgroundImage = "url(\"" + raw + "\")";
     },
 
     photoSearch: function () {
